@@ -10,6 +10,7 @@ The shops should be sorted by price in ascending order, and in case of a tie, th
 from typing import List, Dict, Tuple
 from enum import Enum
 from datetime import datetime, timedelta
+from random import randint
 
 
 class RentStatus(int, Enum):
@@ -81,8 +82,6 @@ class Rental:
 
     def return_movie(self, movie_copy: MovieCopy):
         self.status = RentStatus.AVAILABLE
-        from random import randint
-
         # Some random delay to simulate a rented time delay
         self.returned_at = datetime.now() + timedelta(randint(1, 10))
         self.fare = (self.returned_at - self.rented_at).days * movie_copy.price
@@ -97,6 +96,7 @@ class MovieRentalSystem:
     def __init__(self) -> None:
         self._stores: Dict[int, Store] = {}
         self._rentals: Dict[Tuple, Rental] = {}
+        # Another optimization can be use movie_id as key to store movie copies for faster lookup
         self._movie_copies: Dict[int, MovieCopy] = {}
 
     def is_movie_rented(self, store_id, movie_id):
