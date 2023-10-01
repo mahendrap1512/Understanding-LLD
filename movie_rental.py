@@ -1,3 +1,12 @@
+"""
+Requirements:
+1. Search: Finds the cheapest 5 shops that have an unrented copy of a given movie.
+The shops should be sorted by price in ascending order, and in case of a tie, the one with the smaller shop id should appear first.
+2. Rent: Rents an unrented copy of a given movie from a given shop.
+3. Drop: Drops off a previously rented copy of a given movie at a given shop.
+4. Report: Returns the cheapest 5 rented movies 
+"""
+
 from typing import List, Dict, Tuple
 from enum import Enum
 from datetime import datetime, timedelta
